@@ -5,6 +5,9 @@
   "username": "postgres",
   "password": "docker",
   "database": "orchard",
+  "entities": [
+    "./src/modules/**/infra/typeorm/entities/*.ts"
+  ],
   "migrations": [
     "./src/shared/infra/typeorm/migrations/*.ts"
   ],

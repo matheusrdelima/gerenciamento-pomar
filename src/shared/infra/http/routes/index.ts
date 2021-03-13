@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
-import treesRouter from '@modules/trees/infra/http/routes/trees.routes';
+import SpeciesRouter from '@modules/trees/infra/http/routes/species.routes';
 
 const routes = Router();
 
-routes.use('/trees', treesRouter);
+routes.use('/species', SpeciesRouter);
 
 export default routes;
