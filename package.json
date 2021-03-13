@@ -2,5 +2,8 @@
   "name": "api-orchard",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
 }
