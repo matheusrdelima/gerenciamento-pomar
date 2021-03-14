@@ -12,6 +12,9 @@ import GroupRepository from '@modules/trees/infra/typeorm/repositories/GroupRepo
 import IGroupTreesRepository from '@modules/trees/repositories/IGroupTreesRepository';
 import GroupTreesRepository from '@modules/trees/infra/typeorm/repositories/GroupTreesRepository';
 
+import IHarvestRepository from '@modules/trees/repositories/IHarvestRepository';
+import HarvestRepository from '@modules/trees/infra/typeorm/repositories/HarvestRepository';
+
 container.registerSingleton<ISpeciesRepository>(
   'SpeciesRepository',
   SpeciesRepository,
@@ -30,4 +33,9 @@ container.registerSingleton<IGroupRepository>(
 container.registerSingleton<IGroupTreesRepository>(
   'GroupTreesRepository',
   GroupTreesRepository,
+);
+
+container.registerSingleton<IHarvestRepository>(
+  'HarvestRepository',
+  HarvestRepository,
 );
