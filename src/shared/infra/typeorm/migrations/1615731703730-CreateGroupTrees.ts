@@ -9,11 +9,13 @@ export default class CreateGroupTrees1615731703730 implements MigrationInterface
           columns: [
             {
               name: 'group_id',
-              type: 'uuid'
+              type: 'uuid',
+              isPrimary: true,
             },
             {
               name: 'tree_id',
-              type: 'uuid'
+              type: 'uuid',
+              isPrimary: true,
             },
             {
               name: 'created_at',
