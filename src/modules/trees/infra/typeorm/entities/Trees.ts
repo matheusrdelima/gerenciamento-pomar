@@ -4,25 +4,26 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
+  ManyToOne,
   JoinColumn,
 } from 'typeorm';
 
-import Trees from './Trees';
+import Species from './Species';
 
-@Entity('species')
-class Species {
+@Entity('trees')
+class Trees {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
   description: string;
 
-  @OneToMany(() => Trees, trees => trees.specie, {
-    cascade: ['insert', 'update'],
-  })
+  @Column()
+  age: number;
+
+  @ManyToOne(() => Species, species => species.trees)
   @JoinColumn({ name: 'specie_id' })
-  trees: Trees[];
+  specie: Species;
 
   @CreateDateColumn()
   created_at: Date;
@@ -31,4 +32,4 @@ class Species {
   updated_at: Date;
 }
 
-export default Species;
+export default Trees;

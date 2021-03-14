@@ -3,4 +3,5 @@ import Species from '../infra/typeorm/entities/Species'
 
 export default interface ISpeciesRepository {
   create(data: ISpeciesDTO): Promise<Species>;
+  findById(specie_id: string): Promise<Species | undefined>;
 }

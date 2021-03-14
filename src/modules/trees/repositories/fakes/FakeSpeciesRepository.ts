@@ -8,6 +8,12 @@ import Species from '../../infra/typeorm/entities/Species';
 class FakeSpeciesRepository implements ISpeciesRepository {
   private species: Species[] = [];
 
+  public async findById(id: string): Promise<Species | undefined> {
+    const findSpecie = this.species.find(specie => specie.id === id);
+
+    return findSpecie;
+  }
+
   public async create({ description }: ISpeciesDTO): Promise<Species> {
     const specie = new Species();
 
