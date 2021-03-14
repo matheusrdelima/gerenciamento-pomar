@@ -8,6 +8,12 @@ import Trees from '../../infra/typeorm/entities/Trees';
 class FakeTreesRepository implements ITreesRepository {
   private trees: Trees[] = [];
 
+  public async findById(tree_id: string): Promise<Trees | undefined> {
+    const findTree = this.trees.find(tree => tree.id === tree_id);
+
+    return findTree;
+  }
+
   public async create({ description, age, specie }: ITreesDTO): Promise<Trees> {
     const tree = new Trees();
 

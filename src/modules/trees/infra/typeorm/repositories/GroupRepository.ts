@@ -12,6 +12,12 @@ class GroupRepository implements IGroupRepository {
     this.ormRepository = getRepository(Group);
   }
 
+  public async findById(group_id: string): Promise<Group | undefined> {
+    const group = await this.ormRepository.findOne(group_id);
+
+    return group;
+  }
+
   public async create({ name, description }: IGroupDTO): Promise<Group> {
     const group = this.ormRepository.create({
       name,
