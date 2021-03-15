@@ -14,6 +14,12 @@ class FakeSpeciesRepository implements ISpeciesRepository {
     return findSpecie;
   }
 
+  public async findOneSpecie(specie_id: string): Promise<Species | undefined> {
+    const findSpecie = this.species.find(specie => specie.id === specie_id);
+
+    return findSpecie;
+  }
+
   public async create({ description }: ISpeciesDTO): Promise<Species> {
     const specie = new Species();
 

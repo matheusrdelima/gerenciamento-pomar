@@ -6,6 +6,14 @@ import SpeciesController from '../controllers/SpeciesController';
 const speciesRouter = Router();
 const speciesController = new SpeciesController();
 
+speciesRouter.get('/:specie_id',
+celebrate({
+  [Segments.PARAMS]: {
+    specie_id: Joi.string().uuid().required(),
+  }
+}),
+speciesController.show);
+
 speciesRouter.post('/',
 celebrate({
   [Segments.BODY]: {
