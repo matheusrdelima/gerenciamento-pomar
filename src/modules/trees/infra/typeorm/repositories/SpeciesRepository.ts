@@ -24,6 +24,10 @@ class SpeciesRepository implements ISpeciesRepository {
     return specie;
   }
 
+  public async findAllSpecies(): Promise<Species[]> {
+    return this.ormRepository.find();
+  }
+
   public async create({ description }: ISpeciesDTO): Promise<Species> {
     const species = this.ormRepository.create({
       description

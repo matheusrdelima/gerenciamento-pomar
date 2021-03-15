@@ -6,6 +6,8 @@ import SpeciesController from '../controllers/SpeciesController';
 const speciesRouter = Router();
 const speciesController = new SpeciesController();
 
+speciesRouter.get('/', speciesController.index);
+
 speciesRouter.get('/:specie_id',
 celebrate({
   [Segments.PARAMS]: {

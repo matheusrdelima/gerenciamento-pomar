@@ -20,6 +20,10 @@ class FakeSpeciesRepository implements ISpeciesRepository {
     return findSpecie;
   }
 
+  public async findAllSpecies(): Promise<Species[]> {
+    return this.species;
+  }
+
   public async create({ description }: ISpeciesDTO): Promise<Species> {
     const specie = new Species();
 

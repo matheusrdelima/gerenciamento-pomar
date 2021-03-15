@@ -2,9 +2,18 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import ShowSpecieService from '@modules/trees/services/ShowSpecieService';
+import ListSpeciesService from '@modules/trees/services/ListSpeciesService';
 import CreateSpeciesService from '@modules/trees/services/CreateSpeciesService';
 
 export default class SpeciesController {
+  public async index(request: Request, response: Response): Promise<Response> {
+    const listSpeciesService = container.resolve(ListSpeciesService);
+
+    const species = await listSpeciesService.execute();
+
+    return response.json(species);
+  }
+
   public async show(request: Request, response: Response): Promise<Response> {
     const { specie_id } = request.params;
 
