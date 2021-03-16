@@ -20,6 +20,10 @@ class FakeTreesRepository implements ITreesRepository {
     return findTree;
   }
 
+  public async findAllTrees(): Promise<Trees[]> {
+    return this.trees;
+  }
+
   public async create({ description, age, specie }: ITreesDTO): Promise<Trees> {
     const tree = new Trees();
 

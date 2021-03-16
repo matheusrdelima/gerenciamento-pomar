@@ -1,10 +1,19 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
+import ListTreesService from '@modules/trees/services/ListTreesService';
 import ShowTreesService from '@modules/trees/services/ShowTreesService';
 import CreateTreesService from '@modules/trees/services/CreateTreesService';
 
 export default class TreesController {
+  public async index(request: Request, response: Response): Promise<Response> {
+    const listTreesService = container.resolve(ListTreesService);
+
+    const trees = await listTreesService.execute();
+
+    return response.json(trees);
+  }
+
   public async show(request: Request, response: Response): Promise<Response> {
     const { tree_id } = request.params;
 

@@ -26,6 +26,14 @@ class TreesRepository implements ITreesRepository {
     return tree;
   }
 
+  public async findAllTrees(): Promise<Trees[]> {
+    const trees = await this.ormRepository.find({
+      relations: ['specie']
+    });
+
+    return trees;
+  }
+
   public async create({ description, age, specie }: ITreesDTO): Promise<Trees> {
     const trees = this.ormRepository.create({
       description,

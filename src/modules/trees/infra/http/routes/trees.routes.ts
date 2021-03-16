@@ -6,6 +6,8 @@ import TreesController from '../controllers/TreesController';
 const treesRouter = Router();
 const treesController = new TreesController();
 
+treesRouter.get('/', treesController.index);
+
 treesRouter.get('/:tree_id',
 celebrate({
   [Segments.PARAMS]: {

@@ -5,4 +5,5 @@ export default interface ITreesRepository {
   create(data: ITreesDTO): Promise<Trees>;
   findById(tree_id: string): Promise<Trees | undefined>;
   findOneTree(tree_id: string): Promise<Trees | undefined>;
+  findAllTrees(): Promise<Trees[]>;
 }
