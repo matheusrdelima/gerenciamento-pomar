@@ -1,4 +1,3 @@
-import AppError from '@shared/errors/AppError';
 import { injectable, inject } from 'tsyringe';
 import Species from '../infra/typeorm/entities/Species';
 import ISpeciesRepository from '../repositories/ISpeciesRepository';

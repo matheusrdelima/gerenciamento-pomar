@@ -1,4 +1,3 @@
-import AppError from '@shared/errors/AppError';
 import FakeSpeciesRepository from '../repositories/fakes/FakeSpeciesRepository';
 import ListSpeciesService from './ListSpeciesService';
 
