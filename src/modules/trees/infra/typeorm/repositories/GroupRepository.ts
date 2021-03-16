@@ -18,6 +18,12 @@ class GroupRepository implements IGroupRepository {
     return group;
   }
 
+  public async findOneGroup(group_id: string): Promise<Group | undefined> {
+    const group = await this.ormRepository.findOne(group_id);
+
+    return group;
+  }
+
   public async create({ name, description }: IGroupDTO): Promise<Group> {
     const group = this.ormRepository.create({
       name,

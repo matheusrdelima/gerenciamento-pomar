@@ -8,6 +8,14 @@ const groupRouter = Router();
 const groupController = new GroupController();
 const groupTreeController = new GroupTreeController();
 
+groupRouter.get('/:group_id',
+celebrate({
+  [Segments.PARAMS]: {
+    group_id: Joi.string().uuid().required(),
+  }
+}),
+groupController.show);
+
 groupRouter.post('/',
 celebrate({
   [Segments.BODY]: {
