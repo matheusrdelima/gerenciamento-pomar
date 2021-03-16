@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import CreateGroupTreeService from '@modules/trees/services/CreateGroupTreeService';
 
@@ -14,6 +15,6 @@ export default class GroupTreeController {
       tree_id
      });
 
-    return response.status(201).json(groupTree);
+    return response.status(201).json(classToClass(groupTree));
   }
 }

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import ListGroupsService from '@modules/trees/services/ListGroupsService';
 import ShowGroupService from '@modules/trees/services/ShowGroupService';
@@ -11,7 +12,7 @@ export default class GroupController {
 
     const groups = await listGroupsService.execute();
 
-    return response.json(groups);
+    return response.json(classToClass(groups));
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
@@ -23,7 +24,7 @@ export default class GroupController {
       group_id
     });
 
-    return response.json(group);
+    return response.json(classToClass(group));
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
@@ -36,6 +37,6 @@ export default class GroupController {
       description
      });
 
-    return response.status(201).json(group);
+    return response.status(201).json(classToClass(group));
   }
 }

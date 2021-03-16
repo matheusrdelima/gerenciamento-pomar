@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import ListHarvestService from '@modules/trees/services/ListHarvestService';
 import ShowHarvestService from '@modules/trees/services/ShowHarvestService';
@@ -11,7 +12,7 @@ export default class HarvestController {
 
     const harvests = await listHarvestService.execute();
 
-    return response.json(harvests);
+    return response.json(classToClass(harvests));
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
@@ -23,7 +24,7 @@ export default class HarvestController {
       harvest_id
     });
 
-    return response.json(harvest);
+    return response.json(classToClass(harvest));
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
@@ -42,6 +43,6 @@ export default class HarvestController {
       tree_id
     });
 
-    return response.status(201).json(harvest);
+    return response.status(201).json(classToClass(harvest));
   }
 }

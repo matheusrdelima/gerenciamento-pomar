@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import ListTreesService from '@modules/trees/services/ListTreesService';
 import ShowTreesService from '@modules/trees/services/ShowTreesService';
@@ -11,7 +12,7 @@ export default class TreesController {
 
     const trees = await listTreesService.execute();
 
-    return response.json(trees);
+    return response.json(classToClass(trees));
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
@@ -23,7 +24,7 @@ export default class TreesController {
       tree_id
     });
 
-    return response.json(tree);
+    return response.json(classToClass(tree));
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
@@ -37,6 +38,6 @@ export default class TreesController {
       specie_id
     });
 
-    return response.status(201).json(trees);
+    return response.status(201).json(classToClass(trees));
   }
 }

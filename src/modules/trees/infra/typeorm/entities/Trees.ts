@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 
 import Species from './Species';
+import { Exclude } from 'class-transformer';
 
 @Entity('trees')
 class Trees {
@@ -25,9 +26,11 @@ class Trees {
   @JoinColumn({ name: 'specie_id' })
   specie: Species;
 
+  @Exclude()
   @CreateDateColumn()
   created_at: Date;
 
+  @Exclude()
   @UpdateDateColumn()
   updated_at: Date;
 }
