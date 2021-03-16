@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 
 import express, { Request, Response, NextFunction } from 'express';
+import swaggerUi from 'swagger-ui-express';
 import { errors } from 'celebrate';
 import 'express-async-errors';
 
@@ -9,11 +10,14 @@ import AppError from '@shared/errors/AppError';
 import '@shared/infra/typeorm';
 import '@shared/container';
 
+import swaggerFile from 'swagger.json';
+
 import routes from './routes';
 
 const app = express();
 
 app.use(express.json());
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(routes);
 
 app.use(errors());

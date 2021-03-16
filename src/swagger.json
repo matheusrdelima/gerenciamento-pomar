@@ -1,0 +1,492 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Gerenciamento de Pomar",
+    "description": "API Rest Gerenciamento de Pomar",
+    "version": "1.0.0"
+  },
+  "paths" : {
+    "/species": {
+      "post": {
+        "tags": ["Espécie"],
+        "summary": "Cria uma espécie",
+        "description": "Cria uma espécie de árvore",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": "string"
+                },
+                "example": {
+                  "description": "Descrição da espécie"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Espécie"],
+        "summary": "Lista todas espécies",
+        "description": "Lista todas espécies de árvores",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/species/{specie_id}": {
+      "get": {
+        "tags": ["Espécie"],
+        "summary": "Exibe uma espécie",
+        "description": "Exibe uma espécie de árvores",
+        "parameters": [{
+          "in": "path",
+          "name": "specie_id",
+          "required": true,
+          "type": "string",
+          "description": "Código da espécie"
+        }],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/trees": {
+      "post": {
+        "tags": ["Árvores"],
+        "summary": "Cria uma árvore",
+        "description": "Cria uma árvore",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": "string",
+                  "age": "number",
+                  "specie_id": "string"
+                },
+                "example": {
+                  "description": "Descrição da Árvore",
+                  "age": 200,
+                  "specie_id": "51a578ed-dbce-4ff2-8883-6a4a6eca6e31"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Árvores"],
+        "summary": "Lista todas árvores",
+        "description": "Lista todas árvores",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "age": {
+                        "type": "number"
+                      },
+                      "specie": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trees/{tree_id}": {
+      "get": {
+        "tags": ["Árvores"],
+        "summary": "Exibe uma árvore",
+        "description": "Exibe uma árvore",
+        "parameters": [{
+          "in": "path",
+          "name": "tree_id",
+          "required": true,
+          "type": "string",
+          "description": "Código da árvore"
+        }],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "age": {
+                        "type": "number"
+                      },
+                      "specie": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/group": {
+      "post": {
+        "tags": ["Grupo"],
+        "summary": "Cria um grupo de árvore",
+        "description": "Cria um grupo de árvore",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": "string",
+                  "description": "string"
+                },
+                "example": {
+                  "name": "Nome do grupo",
+                  "description": "Descrição do grupo"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Grupo"],
+        "summary": "Lista todos grupos",
+        "description": "Lista todos grupos de árvores",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/group/{group_id}": {
+      "get": {
+        "tags": ["Grupo"],
+        "summary": "Exibe um grupo",
+        "description": "Exibe um grupo de árvores",
+        "parameters": [{
+          "in": "path",
+          "name": "group_id",
+          "required": true,
+          "type": "string",
+          "description": "Código do Grupo"
+        }],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/group/tree": {
+      "post": {
+        "tags": ["Grupo de árvores"],
+        "summary": "Realiza o vinculo da árvore ao Grupo",
+        "description": "Realiza o vinculo da árvore ao Grupo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "group_id": "string",
+                  "tree_id": "string"
+                },
+                "example": {
+                  "group_id": "b09b7f31-ebfc-414d-9bd6-5eb86ed69f2f",
+                  "tree_id": "51a578ed-dbce-4ff2-8883-6a4a6eca6e31"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/harvest": {
+      "post": {
+        "tags": ["Colheita"],
+        "summary": "Cria uma colheita",
+        "description": "Cria uma colheita",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "information": "string",
+                  "date_harvest": "date",
+                  "gross_weight": "number",
+                  "tree_id": "string"
+                },
+                "example": {
+                  "information": "Informação da Colheita",
+                  "date_harvest": "2021-03-16T22:02:30.254Z",
+                  "gross_weight": 200,
+                  "tree_id": "8a863eb8-a422-4690-9b2e-2e5c081a2dca"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Colheita"],
+        "summary": "Lista todas colheitas",
+        "description": "Lista todas colheitas",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "information": {
+                        "type": "string"
+                      },
+                      "date_harvest": {
+                        "type": "string"
+                      },
+                      "gross_weight": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/harvest/{harvest_id}": {
+      "get": {
+        "tags": ["Colheita"],
+        "summary": "Exibe uma colheita",
+        "description": "Exibe uma colheita",
+        "parameters": [{
+          "in": "path",
+          "name": "harvest_id",
+          "required": true,
+          "type": "string",
+          "description": "Código da Colheita"
+        }],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "information": {
+                        "type": "string"
+                      },
+                      "date_harvest": {
+                        "type": "string"
+                      },
+                      "gross_weight": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  }
+}
