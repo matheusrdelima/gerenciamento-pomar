@@ -35,6 +35,15 @@ class CreateGroupTreeService {
       throw new AppError('Group not found!');
     }
 
+    const existsGroupTree = await this.groupTreesRepository.findById({
+      group_id,
+      tree_id
+    });
+
+    if (existsGroupTree) {
+      throw new AppError('Group of Trees already registered!');
+    }
+
     const groupTree = await this.groupTreesRepository.create({
       group_id,
       tree_id

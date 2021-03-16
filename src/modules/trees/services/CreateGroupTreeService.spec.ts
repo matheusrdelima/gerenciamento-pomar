@@ -78,4 +78,31 @@ describe('CreateGroupTreeService', () => {
       tree_id: 'any_tree'
     })).rejects.toBeInstanceOf(AppError);
   });
+
+  it('should not be able to create a new Group of Trees already registered', async() => {
+    const specie = await fakeSpeciesRepository.create({
+      description: 'any_specie',
+    });
+
+    const tree = await fakeTreesRepository.create({
+      description: 'any_tree',
+      age: 200,
+      specie,
+    });
+
+    const group = await fakeGroupRepository.create({
+      description: 'any_description',
+      name: 'any_name',
+    });
+
+    await createGroupTreeService.execute({
+      group_id: group.id,
+      tree_id: tree.id
+    });
+
+    await expect(createGroupTreeService.execute({
+      group_id: group.id,
+      tree_id: tree.id
+    })).rejects.toBeInstanceOf(AppError);
+  });
 });

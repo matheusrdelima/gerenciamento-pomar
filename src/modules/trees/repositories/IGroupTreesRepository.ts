@@ -3,4 +3,5 @@ import GroupTrees from '../infra/typeorm/entities/GroupTrees'
 
 export default interface IGroupTreesRepository {
   create(data: IGroupTreeDTO): Promise<GroupTrees>;
+  findById(data: IGroupTreeDTO): Promise<GroupTrees | undefined>;
 }

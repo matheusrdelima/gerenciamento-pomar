@@ -6,6 +6,17 @@ import GroupTrees from '../../infra/typeorm/entities/GroupTrees';
 class FakeGroupTreesRepository implements IGroupTreesRepository {
   private groupTrees: GroupTrees[] = [];
 
+  public async findById({
+    group_id,
+    tree_id }:
+    IGroupTreeDTO): Promise<GroupTrees | undefined> {
+    const groupTree = this.groupTrees.find(groupTree =>
+      groupTree.group_id === group_id &&
+      groupTree.tree_id === tree_id);
+
+      return groupTree;
+  }
+
   public async create({ group_id, tree_id }: IGroupTreeDTO): Promise<GroupTrees> {
     const groupTree = new GroupTrees();
 
