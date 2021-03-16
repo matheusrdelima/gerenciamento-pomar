@@ -1,10 +1,19 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
+import ListGroupsService from '@modules/trees/services/ListGroupsService';
 import ShowGroupService from '@modules/trees/services/ShowGroupService';
 import CreateGroupService from '@modules/trees/services/CreateGroupService';
 
 export default class GroupController {
+  public async index(request: Request, response: Response): Promise<Response> {
+    const listGroupsService = container.resolve(ListGroupsService);
+
+    const groups = await listGroupsService.execute();
+
+    return response.json(groups);
+  }
+
   public async show(request: Request, response: Response): Promise<Response> {
     const { group_id } = request.params;
 

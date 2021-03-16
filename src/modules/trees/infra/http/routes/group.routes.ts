@@ -8,6 +8,8 @@ const groupRouter = Router();
 const groupController = new GroupController();
 const groupTreeController = new GroupTreeController();
 
+groupRouter.get('/', groupController.index);
+
 groupRouter.get('/:group_id',
 celebrate({
   [Segments.PARAMS]: {

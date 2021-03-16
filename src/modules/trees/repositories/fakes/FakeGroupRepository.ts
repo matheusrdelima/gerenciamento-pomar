@@ -20,6 +20,10 @@ class FakeGroupRepository implements IGroupRepository {
     return findGroup;
   }
 
+  public async findAllGroups(): Promise<Group[]> {
+    return this.groups;
+  }
+
   public async create({ name, description }: IGroupDTO): Promise<Group> {
     const group = new Group();
 

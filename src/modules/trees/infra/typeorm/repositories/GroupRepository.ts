@@ -24,6 +24,12 @@ class GroupRepository implements IGroupRepository {
     return group;
   }
 
+  public async findAllGroups(): Promise<Group[]> {
+    const groups = await this.ormRepository.find();
+
+    return groups;
+  }
+
   public async create({ name, description }: IGroupDTO): Promise<Group> {
     const group = this.ormRepository.create({
       name,
