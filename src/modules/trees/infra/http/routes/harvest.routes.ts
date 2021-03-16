@@ -6,6 +6,8 @@ import HarvestController from '../controllers/HarvestController';
 const harvestRouter = Router();
 const harvestController = new HarvestController();
 
+harvestRouter.get('/', harvestController.index);
+
 harvestRouter.get('/:harvest_id',
 celebrate({
   [Segments.PARAMS]: {

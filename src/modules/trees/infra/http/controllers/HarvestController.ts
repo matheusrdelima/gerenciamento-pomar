@@ -1,10 +1,18 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
+import ListHarvestService from '@modules/trees/services/ListHarvestService';
 import ShowHarvestService from '@modules/trees/services/ShowHarvestService';
 import CreateHarvestService from '@modules/trees/services/CreateHarvestService';
 
 export default class HarvestController {
+  public async index(request: Request, response: Response): Promise<Response> {
+    const listHarvestService = container.resolve(ListHarvestService);
+
+    const harvests = await listHarvestService.execute();
+
+    return response.json(harvests);
+  }
 
   public async show(request: Request, response: Response): Promise<Response> {
     const { harvest_id } = request.params;

@@ -18,6 +18,12 @@ class HarvestRepository implements IHarvestRepository {
     return harvest;
   }
 
+  public async findAllSpecies(): Promise<Harvest[]> {
+    const harvests = await this.ormRepository.find();
+
+    return harvests;
+  }
+
   public async create({
     information,
     gross_weight,

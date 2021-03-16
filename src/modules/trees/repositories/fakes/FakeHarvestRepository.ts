@@ -14,6 +14,10 @@ class FakeHarvestRepository implements IHarvestRepository {
     return harvest;
   }
 
+  public async findAllSpecies(): Promise<Harvest[]> {
+    return this.harvests;
+  }
+
   public async create({
     information,
     date_harvest,
