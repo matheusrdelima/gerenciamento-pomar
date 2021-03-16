@@ -6,6 +6,14 @@ import HarvestController from '../controllers/HarvestController';
 const harvestRouter = Router();
 const harvestController = new HarvestController();
 
+harvestRouter.get('/:harvest_id',
+celebrate({
+  [Segments.PARAMS]: {
+    harvest_id: Joi.string().uuid().required(),
+  }
+}),
+harvestController.show);
+
 harvestRouter.post('/',
 celebrate({
   [Segments.BODY]: {

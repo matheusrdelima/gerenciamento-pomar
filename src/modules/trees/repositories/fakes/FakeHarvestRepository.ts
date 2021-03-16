@@ -8,6 +8,12 @@ import Harvest from '../../infra/typeorm/entities/Harvest';
 class FakeHarvestRepository implements IHarvestRepository {
   private harvests: Harvest[] = [];
 
+  public async findOneHarvest(id: string): Promise<Harvest | undefined> {
+    const harvest = this.harvests.find(harvest => harvest.id === id);
+
+    return harvest;
+  }
+
   public async create({
     information,
     date_harvest,

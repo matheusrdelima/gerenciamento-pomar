@@ -12,6 +12,12 @@ class HarvestRepository implements IHarvestRepository {
     this.ormRepository = getRepository(Harvest);
   }
 
+  public async findOneHarvest(id: string): Promise<Harvest | undefined> {
+    const harvest = await this.ormRepository.findOne(id);
+
+    return harvest;
+  }
+
   public async create({
     information,
     gross_weight,
