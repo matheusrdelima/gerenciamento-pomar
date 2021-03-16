@@ -6,6 +6,14 @@ import TreesController from '../controllers/TreesController';
 const treesRouter = Router();
 const treesController = new TreesController();
 
+treesRouter.get('/:tree_id',
+celebrate({
+  [Segments.PARAMS]: {
+    tree_id: Joi.string().uuid().required(),
+  }
+}),
+treesController.show);
+
 treesRouter.post('/',
 celebrate({
   [Segments.BODY]: {
