@@ -12,6 +12,28 @@ class GroupTreesRepository implements IGroupTreesRepository {
     this.ormRepository = getRepository(GroupTrees);
   }
 
+  public async findAllGroupTrees(): Promise<GroupTrees[]> {
+    const groupTrees =
+      await this.ormRepository.query(`
+      select
+        "grouptrees".group_id "group_id",
+        "group".name          "group_name",
+        "group".description   "group_description",
+        "grouptrees".tree_id  "tree_id",
+        "trees".description   "tree_description",
+        "trees".age           "tree_age",
+        "trees".specie_id     "specie_id",
+        "species".description "specie_description"
+      from "grouptrees"
+        inner join "group"
+      on ("group".id = "grouptrees".group_id)
+        inner join "trees"
+      on ("trees".id = "grouptrees".tree_id)
+        inner join "species"
+      on ("species".id = "trees".specie_id)`);
+    return groupTrees;
+  }
+
   public async findById({
     group_id,
     tree_id }:
