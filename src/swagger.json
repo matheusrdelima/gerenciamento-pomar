@@ -370,6 +370,55 @@
             "description": "Bad Request"
           }
         }
+      },
+      "get": {
+        "tags": ["Grupo de árvores"],
+        "summary": "Lista todos os grupos, árvores e espécies",
+        "description": "Lista todos os grupos, árvores e espécies",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "group_id": {
+                        "type": "string"
+                      },
+                      "group_name": {
+                        "type": "string"
+                      },
+                      "group_description": {
+                        "type": "string"
+                      },
+                      "tree_id": {
+                        "type": "string"
+                      },
+                      "tree_description": {
+                        "type": "string"
+                      },
+                      "tree_age": {
+                        "type": "number"
+                      },
+                      "specie_id": {
+                        "type": "string"
+                      },
+                      "specie_description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
       }
     },
     "/harvest": {
